@@ -1,6 +1,7 @@
 $font-stack    : Helvetica, sans-serif;
 $primary-color : #333333;
 $light-gray    : #D3D3D3;
+$light-red     : #FB2323;
 
 @mixin border-radius($radius) {
   -moz-border-radius: $radius;
@@ -68,6 +69,35 @@ body {
   box-shadow: 3px 2px $light-gray;
   padding: 10px;
   margin: 10px;
+  height: 300px;
+
+  .card-image {
+    background-position: center center; 
+    background-size: contain; 
+    background-repeat: no-repeat;
+    height: 170px;
+
+    .card-label-top-left {
+      position: absolute; 
+      background-color: $light-red; 
+      opacity: 0.8; 
+      top: 0; 
+      padding: 3px; 
+      @include border-radius(2px);
+    }
+    .card-label-bottom-right {
+      position: absolute; 
+      top: 120px; 
+      right: 18px; 
+      color: $light-red; 
+      font-size: 35px;
+    }
+  }
+  .card-description {
+    p {
+      font-size: 16px;
+    }
+  }
 }
 
 .text-center {
