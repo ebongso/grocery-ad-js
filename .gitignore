@@ -1,0 +1,7 @@
+# Directories to ignore
+node_modules
+.sass-cache
+assets/css
+
+# Files to ignore
+.env
