@@ -2,6 +2,8 @@ $font-stack    : Helvetica, sans-serif;
 $primary-color : #333333;
 $light-gray    : #D3D3D3;
 $light-red     : #FB2323;
+$light-orange  : #FBC623;
+$white         : #FFFFFF;
 
 @mixin border-radius($radius) {
   -moz-border-radius: $radius;
@@ -26,11 +28,21 @@ body {
 .row {
   margin-left: -15px;
   margin-right: -15px;
+  display: table;
 
   .col-xs-12, .col-sm-6, .col-md-4, .col-lg-3 {
     float: left;
     position: relative;
   }
+}
+.row-margin-10 {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.center {
+  margin-left: auto;
+  margin-right: auto;
 }
 
 @media screen and (max-width: 767px) {
@@ -83,6 +95,7 @@ body {
       opacity: 0.8; 
       top: 0; 
       padding: 3px; 
+      width: 80%;
       @include border-radius(2px);
     }
     .card-label-bottom-right {
@@ -100,6 +113,28 @@ body {
   }
 }
 
+.paging {
+  border: 1px solid $light-gray; 
+  @include border-radius(4px);
+  padding: 10px;
+  margin: 5px;
+
+  a {    
+    text-decoration: none;
+    color: $primary-color;
+  }
+}
+.paging-active {
+  border: 1px solid $light-orange;
+  @include border-radius(4px);
+  background-color: $light-orange;
+
+  a {
+    text-decoration: none;
+    color: $white;
+  }
+}
+
 .text-center {
   text-align: center;
 }
@@ -107,4 +142,14 @@ body {
 .img-sm {
   width: 100px;
   height: 100px;
+}
+
+.hidden {
+  display: none;
+}
+
+.select-control {
+  padding: 5px;
+  border: 1px solid $light-gray;
+  @include border-radius(4px);
 }
