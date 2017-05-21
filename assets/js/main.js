@@ -26,7 +26,7 @@
       <div class="card">
         <div class="card-image" style="background-image: url('${ImageUrl}')">
           <p class="card-label-top-left ${(Price.split('<br>').length > 1 && Price.split('<br>')[1] !== 'of equal or' && Price.split('<br>')[1].indexOf('Buy') < 0) ? '' : 'hidden'}">
-            <b style="color: #FFFFFF;">${Price.indexOf('Buy') >= 0 ? Price.split('<br>').join(' ') : Price.split('<br>')[1]}</b>
+            <b style="color: #FFFFFF;">${Price.indexOf('Buy') >= 0 ? Price.split('<br>').join(' ') : Price.split('<br>')[1] + ' ' + (Price.split('<br>')[2] ? Price.split('<br>')[2] : '')}</b>
           </p>
           <p class="card-label-bottom-right ${(Price.split('<br>')[0].indexOf('Buy') >= 0) ? 'hidden' : ''}"><b><i>${Price.split('<br>')[0].substr(0, 12)}</i></b></p>
         </div>
@@ -51,6 +51,7 @@
       else if(splitQ[0] === 'page') page = splitQ[1];
     }
   }
+  page = page === '' ? '1' : page;
 
   //Make sure the store dropdown is selected
   let storeSelect = document.getElementById('storeSelect');

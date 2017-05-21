@@ -95,7 +95,7 @@ body {
       opacity: 0.8; 
       top: 0; 
       padding: 3px; 
-      width: 80%;
+      max-width: 85%;
       @include border-radius(2px);
     }
     .card-label-bottom-right {
