@@ -82,10 +82,34 @@
         let paging = '';
         for(let i = 1; i <= totalPages; i++) {
           paging += '<span class="paging' + (i == currentPage ? ' paging-active' : '' ) + 
-            '"><a href="/?store=' + storeName + '&page=' + i + '">' + i + '</a></span>';
+            '" data-store="' + storeName + '" data-page="' + i + '">' + i + '</span>';
         }
         document.getElementById('pagingTop').innerHTML = paging;
         document.getElementById('pagingBottom').innerHTML = paging;
+        
+        let pages = document.getElementsByClassName('paging');
+        Array.from(pages).forEach((element) => {
+          console.log(element.getAttribute('data-store'));
+          element.addEventListener('click', () => {
+            Array.from(pages).forEach((elem) => {
+              if(elem.innerHTML == element.getAttribute('data-page')) elem.setAttribute('class', 'paging paging-active');
+              else elem.setAttribute('class', 'paging');
+            });
+            let req = new XMLHttpRequest();
+            req.onreadystatechange = () => {
+              if(req.readyState == 0) {
+                document.getElementById('grocery-items').innerHTML = 
+                  '<p class="text-center"><img alt="loading" src="/images/loading.gif" /></p>';
+              }
+              if(req.readyState == 4 && req.status == 200) {
+                var json = JSON.parse(req.responseText);
+                document.getElementById('grocery-items').innerHTML = json.items.map(storeName === 'lucky' ? luckyitem : goitem).join('');
+              }
+            };
+            req.open('GET', '/api/items?store=' + element.getAttribute('data-store') + '&page=' + element.getAttribute('data-page'), true);
+            req.send();
+          });
+        });
       }
     };
   };

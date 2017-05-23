@@ -118,21 +118,14 @@ body {
   @include border-radius(4px);
   padding: 10px;
   margin: 5px;
-
-  a {    
-    text-decoration: none;
-    color: $primary-color;
-  }
+  cursor: pointer;
 }
 .paging-active {
   border: 1px solid $light-orange;
   @include border-radius(4px);
   background-color: $light-orange;
-
-  a {
-    text-decoration: none;
-    color: $white;
-  }
+  cursor: pointer;
+  color: $white;
 }
 
 .text-center {
