@@ -39,7 +39,6 @@
     `;
 
   const url = window.location.href;
-  console.log(url);
   const splitUrl = url.split('?');
   let storeName = '';
   let page = '';
@@ -65,6 +64,10 @@
   let loadItems = (storeName, page) => {
     let req = new XMLHttpRequest();
     req.onreadystatechange = () => {
+      if(req.readyState == 0) {
+        document.getElementById('grocery-items').innerHTML = 
+          '<p class="text-center"><img alt="loading" src="/images/loading.gif" /></p>';
+      }
       if(req.readyState == 4 && req.status == 200) {
         var json = JSON.parse(req.responseText);
         document.getElementById('grocery-items').innerHTML = json.items.map(storeName === 'lucky' ? luckyitem : goitem).join('');
@@ -90,6 +93,6 @@
 
   //Reload the page when the store selection changes
   storeSelect.addEventListener('change', (e) => {
-    window.location = window.location.href.split('?')[0] + '?store=' + e.target.value;
+    loadItems(e.target.value, '1');
   });
 })();
