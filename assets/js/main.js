@@ -6,13 +6,13 @@
     <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 text-center">
       <div class="card">
         <div class="card-image" style="background-image: url('${x_large_image_url}')">
-          <p class="card-label-top-left">
+          <p class="card-label-top-left ${discount_percent ? '' : 'hidden' }">
             <b style="color: #FFFFFF;">${discount_percent}% OFF</b>
           </p>
-          <p class="card-label-bottom-right"><b><i>${Number(current_price).toFixed(2)}</i></b></p>
+          <p class="card-label-bottom-right"><b><i>${current_price ? Number(current_price).toFixed(2) : '' }</i></b></p>
         </div>
         <div class="card-description">
-          <small>${sale_story ? sale_story.split(',')[0] : ''}</small>
+          <small>${sale_story ? sale_story.split('.')[0] : '' }</small>
           <p><b>${brand ? brand.substr(0, 30) : ''}<br />${name ? name.substr(0, 60) : ''}</b></p>
           <small>${description ? description.substr(0, 35) : ''}</small>
         </div>
