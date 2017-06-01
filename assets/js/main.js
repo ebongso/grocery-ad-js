@@ -78,18 +78,19 @@
     req.send();
 
     let createPaging = (totalPages, currentPage) => {
+      let paging = '';
       if(totalPages > 1) {
-        let paging = '';
         for(let i = 1; i <= totalPages; i++) {
           paging += '<span class="paging' + (i == currentPage ? ' paging-active' : '' ) + 
             '" data-store="' + storeName + '" data-page="' + i + '">' + i + '</span>';
         }
-        document.getElementById('pagingTop').innerHTML = paging;
-        document.getElementById('pagingBottom').innerHTML = paging;
+      }
+      document.getElementById('pagingTop').innerHTML = paging;
+      document.getElementById('pagingBottom').innerHTML = paging;
         
-        let pages = document.getElementsByClassName('paging');
+      let pages = document.getElementsByClassName('paging');
+      if(pages && pages.length) {
         Array.from(pages).forEach((element) => {
-          console.log(element.getAttribute('data-store'));
           element.addEventListener('click', () => {
             Array.from(pages).forEach((elem) => {
               if(elem.innerHTML == element.getAttribute('data-page')) elem.setAttribute('class', 'paging paging-active');
